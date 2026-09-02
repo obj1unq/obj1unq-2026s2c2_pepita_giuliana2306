@@ -2,8 +2,15 @@ object pepita {
   var energia = 100
   
   method volar(distancia) {
-    energia = energia - 10 - distancia / 10
-  }
+    self.validarVolar(distancia)
+        energia = energia - 10 - distancia / 10
+    }
+    method validarVolar(distancia) {
+        if (distancia > energia) {
+            self.error("No puede volar la distancia" + distancia)
+        }
+    }
+    
   method descansar() {
         energia = energia + 10
     }
@@ -12,6 +19,9 @@ object pepita {
     }
     method comer(alimento) {
         energia = energia + alimento.energiaQueAporta()
+    }
+    method energia() {
+        return energia
     }
 }
 
@@ -40,15 +50,26 @@ object manzana {
 
 object pepon {
     var energia = 30
+    var ultimoAlimento = manzana 
 
     method comer(alimento) {
+        self.validarComer(alimento)
         energia = energia + alimento.energiaQueAporta() / 2
+        ultimoAlimento = alimento
+    }
+    method validarComer(alimento) {
+        if (ultimoAlimento == alimento) {
+            self.error("No puede comer el alimento" + alimento)
+        }
     }
     method volar(distancia) {
         energia = energia - 20 - distancia*2
     }
     method estaCansado() {
         return energia < 34
+    }
+    method energia() {
+        return energia
     }
 }
 
