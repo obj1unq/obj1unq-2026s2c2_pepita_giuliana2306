@@ -1,0 +1,12 @@
+import pepita.*
+
+describe "test de pepita volar" {
+
+    test "pepita volar" {
+        pepita.volar(10)
+        assert.equals(89, pepita.energia())
+        pepita.volar(1000)
+        assert.equals(89, pepita.energia())
+    }
+}
+
